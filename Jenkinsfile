@@ -24,6 +24,12 @@ pipeline {
                 '''
             }
         }
+        stage('Run on Specific Node') {
+            agent { label 'Buildika' }   // 👈 specify node label here
+            steps {
+                bat 'echo Running this stage on the Windows runner'
+            }
+        }
     }
 
     post {
