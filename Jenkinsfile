@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: 'Git branch to build/sync')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Git branch to build/sync')
         choice(name: 'SYNC_MODE', choices: ['fast', 'full'], description: 'Sync mode')
     }
 
@@ -25,7 +25,7 @@ pipeline {
             }
         }
         stage('Run on Specific Node') {
-            agent { label 'Buildika' }   // 👈 specify node label here
+            agent { label 'Buildika' } 
             steps {
                 bat 'echo Running this stage on the Windows runner'
             }
