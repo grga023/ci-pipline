@@ -8,6 +8,7 @@ pipeline {
 
     stages {
         stage('Initialize Repo') {
+            agent { label 'Buildika' } 
             steps {
                 sh '''
                 chmod +x scripts/repo_initialize.sh
@@ -22,12 +23,6 @@ pipeline {
                 chmod +x scripts/repo_sync.sh
                 ./scripts/repo_sync.sh "$SYNC_MODE"
                 '''
-            }
-        }
-        stage('Run on Specific Node') {
-            agent { label 'Buildika' } 
-            steps {
-                bat 'echo Running this stage on the Windows runner'
             }
         }
     }
