@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'DesktopPC' } 
 
     parameters {
         string(name: 'BRANCH', defaultValue: 'master', description: 'Git branch to build/sync')
@@ -8,7 +8,6 @@ pipeline {
 
     stages {
         stage('Initialize Repo') {
-            agent { label 'Buildika' } 
             steps {
                 sh '''
                 chmod +x scripts/repo_initialize.sh
